@@ -238,7 +238,7 @@ class Ui_MainWindow(object):
 
         c_score = 86.012 -(0.0803*backbleeding_val)-(7.9069*headheight_val)-(7.179*capsule_val)-(0.2627*age_val)-(5.885*sex_val)-(9.9189*three_four_val)-(0.3706*ant_post_val)-(1.5872*pmspike_val)-(4.4166*smoking_val)+(0.7488*handedness_val)+(2.5524*mov_val)
 
-        nkr = -0.99681589 +(1.4871101*backbleeding_val)+(1.15596723*headheight_val)+(0.93317617*capsule_val)-(-0.04234088*age_val)+(0.47240506*sex_val)+(0.62912151*three_four_val)+(0*ant_post_val)+(1.05908633*pmspike_val)+(0*smoking_val)-(0*handedness_val)-(-0.37399923*mov_val)
+        nkr = -0.99681589 +(1.4871101*backbleeding_val)+(1.15596723*headheight_val)+(0.93317617*capsule_val)-(0.04234088*age_val)+(0.47240506*sex_val)+(0.62912151*three_four_val)+(0*ant_post_val)+(1.05908633*pmspike_val)+(0*smoking_val)-(0*handedness_val)-(0.37399923*mov_val)
 
         self.out_c_score.setText(str(round(c_score,2)))
 
