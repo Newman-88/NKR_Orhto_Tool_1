@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from app_design_2 import Ui_MainWindow2
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -169,15 +169,24 @@ class Ui_MainWindow(object):
         self.run.setGeometry(QtCore.QRect(250, 350, 111, 31))
         self.run.setObjectName("run")
 
+        ########################################################
+        #version_2 codes below:
+        self.test = QtWidgets.QPushButton(self.centralwidget)
+        self.test.setGeometry(QtCore.QRect(450, 350, 111, 31))
+        self.test.setObjectName("test")
+        ########################################################
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.run.clicked.connect(lambda: self.clicked())
+        self.run.clicked.connect(lambda: self.clicked_1())
 
+        ##################################### v2 code below:
+        self.test.clicked.connect(lambda: self.clicked_2())
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "NKR_Ortho_Tool_1.v1.0"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "NKR_Ortho_Tool_1.v2.0"))
         self.label1.setText(_translate("MainWindow", "Outcome Prediction in proximal humerous fracture patients\n"
 "undergoing ORIF\n"
 "Poor outcome includes: Non-union, Low Conststant score, \n"
@@ -216,13 +225,16 @@ class Ui_MainWindow(object):
         self.label_7.setText(_translate("MainWindow", "Outcome:"))
         self.run.setText(_translate("MainWindow", "Run Program"))
 
-        
+        ########################################################
+        #version_2 codes below:
+        self.test.setText(_translate("MainWindow", "Test your data"))
+                
         self.out_c_score.setText(_translate("MainWindow", "0"))
         self.log_out.setText(_translate("MainWindow", "NA"))
         self.label_8.setText(_translate("MainWindow", "(R^2 value of the model: 0.74574 and RMS error:  6.09)"))
         self.label_9.setText(_translate("MainWindow", "(Accuracy: 95.83%, Sensitivity: 83.33%(62.24% - 100%) and Specificity: 100%)"))
 
-    def clicked(self):
+    def clicked_1(self):
         ##getting values:
         age_val=self.age.value()
         sex_val=self.sex.currentIndex()
@@ -246,7 +258,17 @@ class Ui_MainWindow(object):
             self.log_out.setText("Poor")
         else:
             self.log_out.setText("Good")
+########################################################
+#version_2 codes below:
 
+    def clicked_2(self):
+        self.MainWindow2 = QtWidgets.QMainWindow()
+        self.ui2 = Ui_MainWindow2()
+        self.ui2.setupUi(self.MainWindow2)
+        self.MainWindow2.show()
+    
+
+##################################################################################
         
 if __name__ == "__main__":
     import sys
