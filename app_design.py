@@ -183,7 +183,7 @@ class Ui_MainWindow(object):
 "Poor outcome includes: Non-union, Low Conststant score, \n"
 "Avascular Necrosis and Revision surgery* "))
         self.label2.setText(_translate("MainWindow", "Patient Details:"))
-        self.label3.setText(_translate("MainWindow", "* The model is trained based on the data provided by Dr. Kirubakaran et al. \n"
+        self.label3.setText(_translate("MainWindow", "* The model is trained based on the data provided by Dr. Gavaskar et al. \n"
 "Ref:"))
         self.label4.setText(_translate("MainWindow", "Age"))
         self.label5.setText(_translate("MainWindow", "Sex:"))
@@ -220,7 +220,7 @@ class Ui_MainWindow(object):
         self.out_c_score.setText(_translate("MainWindow", "0"))
         self.log_out.setText(_translate("MainWindow", "NA"))
         self.label_8.setText(_translate("MainWindow", "(R^2 value of the model: 0.74574 and RMS error:  6.09)"))
-        self.label_9.setText(_translate("MainWindow", "(Accuracy: 93.75%, Sensitivity: 70% and Specificity: 100%)"))
+        self.label_9.setText(_translate("MainWindow", "(Accuracy: 95.83%, Sensitivity: 83.33%(62.24% - 100%) and Specificity: 100%)"))
 
     def clicked(self):
         ##getting values:
