@@ -56,7 +56,12 @@ class Ui_MainWindow2(object):
         self.out_image = QtWidgets.QLabel(self.centralwidget)
         self.out_image.setGeometry(QtCore.QRect(30, 346, 341, 221))
         self.out_image.setText("")
-        self.out_image.setPixmap(QtGui.QPixmap("New\\RC_1.svg"))
+
+        try:
+            self.out_image.setPixmap(QtGui.QPixmap("test.svg"))
+        except:
+            pass
+        
         self.out_image.setScaledContents(True)
         self.out_image.setObjectName("out_image")
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
@@ -349,6 +354,9 @@ class Ui_MainWindow2(object):
         self.retranslateUi(MainWindow2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow2)
 
+        self.start.clicked.connect(lambda: self.clicked_1())
+        
+
     def retranslateUi(self, MainWindow2):
         _translate = QtCore.QCoreApplication.translate
         MainWindow2.setWindowTitle(_translate("MainWindow2", "NKR_Ortho_Tool_1.v2.0: Test Your Own Data"))
@@ -471,7 +479,20 @@ class Ui_MainWindow2(object):
         self.tableWidget.setSortingEnabled(__sortingEnabled)
         self.label_18.setText(_translate("MainWindow2", "*poor outcome includes: Constant score<55, Non-union, AVN and Revision surgery."))
 
+###############################################################################
+    def clicked_1(self):
+        X_lin=[]
+        X_log=[]
+        filename=self.filename.text()
+        if not filename.endswith(".csv"):
+            filename=filename+".csv"
+        
+        print("Start test", filename)
 
+
+
+        
+##################################################################################
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
