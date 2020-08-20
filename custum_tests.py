@@ -46,8 +46,27 @@ def log_test(coef,infile):
     df = pd.read_csv(infile)
     df = df.dropna()
 
-    X=df.iloc[:,1:-2]
+    X=df.iloc[:,[1,2,4,6,7,8,9,11]]
     Y=df.iloc[:,-1]
     X=X.to_numpy()
     Y=Y.to_numpy()
 
+    intercept=coef[0]
+    coef=coef[1:]
+
+    new_Y=X@coef+intercept
+    for i in range (len(Y)):
+        if new_Y[i]<0:
+            new_Y[i]=0
+        else:
+            new_Y[i]=1
+
+    dd=pd.crosstab(Y,new_Y)
+    nkr11=dd.loc[1,1]
+    nkr12=dd.loc[0,1]
+    nkr21=dd.loc[1,0]
+    nkr22=dd.loc[0,0]
+
+    return(nkr11,nkr12,nkr21,nkr22)
+
+   
