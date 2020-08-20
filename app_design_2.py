@@ -59,7 +59,7 @@ class Ui_MainWindow2(object):
         self.out_image.setText("")
 
         try:
-            self.out_image.setPixmap(QtGui.QPixmap("test.svg"))
+            self.out_image.setPixmap(QtGui.QPixmap("Default_display.svg"))
         except:
             pass
         
