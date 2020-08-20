@@ -165,6 +165,13 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.timing = QtWidgets.QSpinBox(self.centralwidget)
+        self.timing.setGeometry(QtCore.QRect(730, 230, 50, 22))
+        self.timing.setObjectName("timing")
+        self.label80 = QtWidgets.QLabel(self.centralwidget)
+        self.label80.setGeometry(QtCore.QRect(610, 234, 110, 13))
+        self.label80.setObjectName("label80")
+        
         self.run = QtWidgets.QPushButton(self.centralwidget)
         self.run.setGeometry(QtCore.QRect(250, 350, 111, 31))
         self.run.setObjectName("run")
@@ -223,6 +230,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Predicted Outcome:"))
         self.label_6.setText(_translate("MainWindow", "Constant Score: "))
         self.label_7.setText(_translate("MainWindow", "Outcome:"))
+        self.label80.setText(_translate("MainWindow", "Time of Surgery(Days)"))
         self.run.setText(_translate("MainWindow", "Run Program"))
 
         ########################################################
@@ -247,8 +255,9 @@ class Ui_MainWindow(object):
         three_four_val=self.three_four.currentIndex()
         handedness_val=self.handedness.currentIndex()
         mov_val=self.mov.currentIndex()
+        timing_val=self.timing.value()
 
-        c_score = 86.012 -(0.0803*backbleeding_val)-(7.9069*headheight_val)-(7.179*capsule_val)-(0.2627*age_val)-(5.885*sex_val)-(9.9189*three_four_val)-(0.3706*ant_post_val)-(1.5872*pmspike_val)-(4.4166*smoking_val)+(0.7488*handedness_val)+(2.5524*mov_val)
+        c_score = 86.012 -(0.0803*backbleeding_val)-(7.9069*headheight_val)-(7.179*capsule_val)-(0.2627*age_val)-(5.885*sex_val)-(9.9189*three_four_val)-(0.3706*ant_post_val)-(1.5872*pmspike_val)-(4.4166*smoking_val)+(0.7488*handedness_val)+(2.5524*mov_val)+(1.3027*timing_val)
 
         nkr = -0.99681589 +(1.4871101*backbleeding_val)+(1.15596723*headheight_val)+(0.93317617*capsule_val)-(0.04234088*age_val)+(0.47240506*sex_val)+(0.62912151*three_four_val)+(0*ant_post_val)+(1.05908633*pmspike_val)+(0*smoking_val)-(0*handedness_val)-(0.37399923*mov_val)
 
