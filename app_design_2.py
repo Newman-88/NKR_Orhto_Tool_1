@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from custum_tests import linear_test, log_test
 
 
 class Ui_MainWindow2(object):
@@ -210,7 +211,7 @@ class Ui_MainWindow2(object):
         self.tableWidget.setGeometry(QtCore.QRect(15, 30, 801, 71))
         self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(14)
+        self.tableWidget.setColumnCount(15)
         self.tableWidget.setRowCount(1)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setVerticalHeaderItem(0, item)
@@ -275,6 +276,11 @@ class Ui_MainWindow2(object):
         font.setPointSize(7)
         item.setFont(font)
         self.tableWidget.setHorizontalHeaderItem(13, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setPointSize(7)
+        item.setFont(font)
+        self.tableWidget.setHorizontalHeaderItem(14, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setItem(0, 0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -342,6 +348,11 @@ class Ui_MainWindow2(object):
         font.setPointSize(7)
         item.setFont(font)
         self.tableWidget.setItem(0, 13, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setPointSize(7)
+        item.setFont(font)
+        self.tableWidget.setItem(0, 14, item)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(70)
         self.label_18 = QtWidgets.QLabel(self.centralwidget)
         self.label_18.setGeometry(QtCore.QRect(20, 100, 491, 16))
@@ -443,8 +454,10 @@ class Ui_MainWindow2(object):
         item = self.tableWidget.horizontalHeaderItem(11)
         item.setText(_translate("MainWindow2", "MOV"))
         item = self.tableWidget.horizontalHeaderItem(12)
-        item.setText(_translate("MainWindow2", "Constant Score"))
+        item.setText(_translate("MainWindow2", "Surgery Timing"))
         item = self.tableWidget.horizontalHeaderItem(13)
+        item.setText(_translate("MainWindow2", "Constant Score"))
+        item = self.tableWidget.horizontalHeaderItem(14)
         item.setText(_translate("MainWindow2", "Outcome"))
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
@@ -473,24 +486,46 @@ class Ui_MainWindow2(object):
         item = self.tableWidget.item(0, 11)
         item.setText(_translate("MainWindow2", "High=0, Low=1"))
         item = self.tableWidget.item(0, 12)
-        item.setText(_translate("MainWindow2", "Real number"))
+        item.setText(_translate("MainWindow2", "in days (positive integer)"))
         item = self.tableWidget.item(0, 13)
+        item.setText(_translate("MainWindow2", "Real number"))
+        item = self.tableWidget.item(0, 14)
         item.setText(_translate("MainWindow2", "Good=0, Poor=1"))
         self.tableWidget.setSortingEnabled(__sortingEnabled)
         self.label_18.setText(_translate("MainWindow2", "*poor outcome includes: Constant score<55, Non-union, AVN and Revision surgery."))
 
 ###############################################################################
+# defing function for linear and log_test :
+
     def clicked_1(self):
-        X_lin=[]
+        #intercepts and coefficients of respective regressions
+        X_lin=coef=[86.01196556876988,-0.26273187,-5.88852366,-0.37056109,-9.91894061,-4.41658396,-0.0802553,-7.1789597,-1.58717569, -7.90690282 ,0.74875754,2.55240497,1.3027]
         X_log=[]
+        
         filename=self.filename.text()
         if not filename.endswith(".csv"):
             filename=filename+".csv"
         
         print("Start test", filename)
 
+        try:
+            r2_val, rms_val = linear_test(X_lin,filename)
+            self.r2.setText(str(r2_val))
+            self.rms.setText(str(rms_val)) 
+        except:
+            r2_val= "Error"
+            rms_val= "Error"
 
+        self.r2.setText(str(r2_val))
+        self.rms.setText(str(rms_val))
 
+        outfile=filename.split(".")[0]
+        try:
+            self.out_image.setPixmap(QtGui.QPixmap(outfile+".svg"))
+        except:
+            pass
+
+        #nkr = log_test(X_log,filename)
         
 ##################################################################################
 if __name__ == "__main__":
